@@ -49,7 +49,6 @@
                 "displayName": "[parameters('nicName')]"
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks', parameters('VNETName'))]",
                 "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('nsgName'))]"
             ],
             "properties": {
@@ -114,9 +113,10 @@
                         }
                     },
                     "imageReference": {
-                        "publisher":"Microsoft",
+                        "publisher":"MicrosoftWindowsServer",
                         "offer":"WindowsServer",
-                        "sku":"2019-datacenter-gensecond"
+                        "sku":"2019-datacenter-gensecond",
+                        "version":"latest"
                     }
                 },
                 "networkProfile": {
