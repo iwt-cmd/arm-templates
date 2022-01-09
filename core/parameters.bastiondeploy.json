@@ -1,0 +1,22 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "bastionHostName": {
+            "value": "Bastion01" 
+        },
+        "bastionSubnetName": {
+            "value": "AzureBastionSubnet" 
+        },
+        "VNETName": {
+            "value": "VNET01" 
+        },
+        "bastionSubnetPrefix": {
+            "value": "10.10.254.0/27" 
+        },
+        "bastionPIPName": {
+            "value": "BastionPIP" 
+        }
+        
+    }
+}

@@ -1,0 +1,30 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "VNET01-name": {
+            "value": "VNET01"
+        },
+        "VNET01-prefix": {
+            "value": "10.10.0.0/16"
+        },
+        "VNET01-subnet-prefix": {
+            "value": "10.10.0.0/24"
+        },
+        "VNET02-name":{
+            "value": "VNET02"
+        },
+        "VNET02-prefix": {
+            "value": "10.20.0.0/16"
+        },
+        "VNET02-subnet-prefix": {
+            "value": "10.20.0.0/24"
+        },
+        "Subnet-name": {
+            "value": "Subnet01"
+        },
+        "Peer-name": {
+            "value": "Peer-"
+        }
+    }
+}

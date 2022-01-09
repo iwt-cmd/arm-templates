@@ -1,0 +1,77 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "bastionHostName": {
+            "type": "string"
+        },
+        "bastionSubnetName": {
+            "type": "string"
+        },
+        "VNETName": {
+            "type": "string"
+        },
+        "bastionSubnetPrefix": {
+            "type": "string"
+        },
+        "bastionPIPName": {
+            "type": "string"
+        }
+    },
+    "functions": [],
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Network/bastionHosts",
+            "apiVersion": "2020-05-01",
+            "name": "[parameters('bastionHostName')]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('VNETName'), parameters('bastionSubnetName'))]",
+                "[resourceId('Microsoft.Network/publicIPAddresses', parameters('bastionPIPName'))]"
+            ],
+            "sku":{
+                "name": "standard"
+            },
+            "properties": {
+                "ipConfigurations":[
+                    {
+                        "name":"bastionIPConf",
+                        "properties": {
+                            "subnet": {
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('VNETName'), parameters('bastionSubnetName'))]"
+                            },
+                            "publicIPAddress": {
+                                "id":"[resourceId('Microsoft.Network/publicIPAddresses', parameters('bastionPIPName'))]"
+                            }
+                        }
+                    }
+                ]
+            }
+
+        },
+     {
+         "name": "[parameters('bastionPIPName')]",
+         "type": "Microsoft.Network/publicIPAddresses",
+         "apiVersion": "2020-11-01",
+         "location": "[resourceGroup().location]",
+         "sku": {
+             "name": "Standard"
+         },
+         "properties": {
+             "publicIPAllocationMethod": "Static"
+         }
+     },
+        {
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "apiVersion": "2020-11-01",
+            "name": "[concat(parameters('VNETName'), '/', parameters('bastionSubnetName'))]",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "addressPrefix": "[parameters('bastionSubnetPrefix')]"
+            }
+
+        }
+    ],
+    "outputs": {}
+}
