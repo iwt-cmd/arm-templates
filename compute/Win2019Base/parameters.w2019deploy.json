@@ -1,0 +1,40 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "VNETName": {
+            "value": "VNET01"
+        },
+        "subnetName": {
+            "value": "Subnet01"
+        },
+        "nicName": {
+            "value": "Nic01"
+        },
+        "nsgName": {
+            "value": "Host01NSG"
+        },
+        "nsgRule1Name": {
+            "value": "AllowRDP"
+        },
+        "nsgRule1Desc": {
+            "value": "Allows RDP"
+        },
+        "nsgRule1AllowedIPs": {
+            "value": "*"
+        },
+        "vmName": {
+            "value": "Host01"
+        },
+        "vmSize": {
+            "value": "standard_d2s_v3"
+        },
+        "adminUsername": {
+            "value": "localadmin"
+        },
+        "adminPassword": {
+            "value": "Abcd1234!!!!"
+        }
+        
+    }
+}
